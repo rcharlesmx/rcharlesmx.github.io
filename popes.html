@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de Nombre Papal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding-top: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      font-size: 16px;
+      padding: 10px;
+      margin: 10px;
+    }
+    #resultado {
+      font-size: 20px;
+      color: darkblue;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generador de Nombre Papal</h1>
+  <p>Escribe un nombre para ver cuál sería su título como Papa:</p>
+  <input type="text" id="nombre" placeholder="Ej: Francisco" />
+  <button onclick="generarNombrePapal()">Generar</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    const papasHist = {
+      "Pedro": 1,
+      "Lino": 1,
+      "Anacleto": 1,
+      "Clemente": 1,
+      "Evaristo": 1,
+      "Alejandro": 1,
+      "Sixto": 5,
+      "Telesforo": 1,
+      "Higinio": 1,
+      "Pío": 12,
+      "León": 13,
+      "Benedicto": 16,
+      "Juan": 23,
+      "Gregorio": 16,
+      "Esteban": 9,
+      "Inocencio": 13,
+      "Celestino": 5,
+      "Bonifacio": 9,
+      "Nicolás": 5,
+      "Calixto": 3,
+      "Urbano": 8,
+      "Pascual": 3,
+      "Adriano": 6,
+      "Julio": 3,
+      "Marcelo": 2,
+      "Eugenio": 4,
+      "Pablo": 6,
+      "Clemente": 14,
+      "Francisco": 1,
+      "Juan Pablo": 2,
+      "Jesús": 0
+    };
+
+    function aRomano(num) {
+      const romanos = [
+        [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
+        [100, "C"], [90, "XC"], [50, "L"], [40, "XL"],
+        [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]
+      ];
+      let res = "";
+      for (let [valor, letra] of romanos) {
+        while (num >= valor) {
+          res += letra;
+          num -= valor;
+        }
+      }
+      return res;
+    }
+
+    function generarNombrePapal() {
+      let nombre = document.getElementById("nombre").value.trim();
+      if (!nombre) {
+        alert("Por favor, ingresa un nombre.");
+        return;
+      }
+      nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
+      let veces = (papasHist[nombre] || 0) + 1;
+      let romano = aRomano(veces);
+      document.getElementById("resultado").textContent = `Nombre papal asignado: ${nombre} ${romano}`;
+    }
+  </script>
+</body>
+</html>
