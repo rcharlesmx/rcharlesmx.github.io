@@ -1,7 +1,7 @@
 {
     "name": "Nombre Papal",
     "short_name": "PapaApp",
-    "start_url": "./index.html",
+    "start_url": "./popes.html",
     "display": "standalone",
     "background_color": "#f5f5f5",
     "theme_color": "#003366",
