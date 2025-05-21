@@ -1,5 +1,5 @@
 {
-    "name": "Papas",
+    "name": "Papas App",
     "short_name": "PapaApp",
     "start_url": "./index.html",
     "display": "standalone",
