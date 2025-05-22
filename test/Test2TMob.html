@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TIME</title>
+    <script src="./js/jquery.min.js"></script>
+    <script type="text/javascript">
+        
+        
+        function GetRequestGet(o) {
+
+            
+            var tokenCB = "";
+            var txtData = "";
+            var method = "WhoTime";
+            var oData = { data: txtData };
+            var domain = "https://wstcb-mobile.terra.com/wstcb/";
+			tokenCB = "BfA67csi1BEkIaNRIMyd0g==";
+			txtData = "WMn+J6ye1FmkHUKwsQG5geDA3k0W0GaYLlTVuT0hzeQH7PLU3et759YwI34Ad53BRRobYCrR/G4XBPCPsXDyb/ieP++qfQsIPM3ZGm+WOwJpcyhqZ70e+pDZ88bGqvFd6d/mrtVMLCgjNs4LQLC2eFvfkhjl0kYUKMwlIDVIYcI=";
+                
+            var url = "https://wstcb-mobile.terra.com/wstcb/Detect.asmx/WhoTime?data=8QgH/5UA7wn9qdaGi+fPpqoM3gsg2a0SyJkCt+aKz3KbDs07KpJQT/5Q8ogR6ooI4DDQER7neNCWL5btv6bxAqHRod4kYcqR5I0qzQiu11c=&ttkn=AlNtPT9ysnLqTsiNwAyXLA==";
+
+			$.ajax({
+				type: "GET",
+				url: url,
+				contentType: "application/x-www-form-urlencoded",
+				dataType: "JSONP",
+				success: function (result) {
+					var msg = "";
+					var e1 = "";
+					var e2 = "";
+					if (result.RESPONSE[0].MESSAGE != undefined)
+						msg = result.RESPONSE[0].MESSAGE;
+					if (result.RESPONSE[0].E1 != undefined)
+						e1 = result.RESPONSE[0].E1;
+					if (result.RESPONSE[0].E2 != undefined)
+						e2 = result.RESPONSE[0].E2;
+
+					$("#txtRes").append("Status: " + result.RESPONSE[0].STATUS + ", E1: " + e1 + ", E2: " + e2 + ", msg: " + msg);
+				},
+				complete: function (result) {
+					alert("complete " + JSON.stringify(result));
+
+				},
+				error: function (e) {
+					alert("error" + JSON.stringify(e));
+				}
+			});
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        Ambiente: Producción
+        <br />
+        <br />
+        País: Chile
+		<br />
+        <br />
+        <input type="button" value="Enviar JSONP" onclick="javascript: GetRequestGet('');" />
+        <br />
+        <br />
+        <span id="txtRes"></span>
+    </div>
+    
+</body>
+</html>
